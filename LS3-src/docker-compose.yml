@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  client:
+    build:
+      context: ./client
+      args:
+        - REACT_APP_HOST_IP_ADDRESS=http://3.133.13.52:3001
+    ports:
+      - "80:80"
+
+  server:
+    build: ./server
+    volumes:
+      - json-data:/usr/src/app
+    ports:
+      - "3001:3001"
+
+volumes:
+  json-data:
+    driver: local

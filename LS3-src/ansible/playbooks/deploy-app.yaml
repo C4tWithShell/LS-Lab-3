@@ -1,0 +1,21 @@
+---
+- hosts: terraformInstance
+  become: yes
+  become_method: sudo
+
+  tasks:
+    
+  - name: git clone
+    git: 
+      repo: https://github.com/MrRahmat/react-nodejs-rest-docker.git
+      dest: ~./app
+
+  - name: build
+    shell: 
+      chdir: ~./app
+      cmd: docker-compose build
+
+  - name: up
+    shell: 
+      chdir: ~./app
+      cmd: docker-compose up
